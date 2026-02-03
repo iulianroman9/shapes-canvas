@@ -124,7 +124,7 @@ document.querySelectorAll('.button-container button').forEach(btn => {
 });
 
 function createShape(type: ShapeType) {
-    const x = Math.random() * (canvas.width - 100) + 25;
+    const x = Math.random() * (canvas.width - 100) + 50;
     const y = Math.random() * (canvas.height - 100) + 25;
     const color = shapeColors[Math.floor(Math.random() * shapeColors.length)];
 

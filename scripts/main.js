@@ -100,7 +100,7 @@ document.querySelectorAll('.button-container button').forEach(function (btn) {
     });
 });
 function createShape(type) {
-    var x = Math.random() * (canvas.width - 100) + 25;
+    var x = Math.random() * (canvas.width - 100) + 50;
     var y = Math.random() * (canvas.height - 100) + 25;
     var color = shapeColors[Math.floor(Math.random() * shapeColors.length)];
     var newShape;
