@@ -32,6 +32,14 @@ var Circle = (function (_super) {
         var distance = Math.sqrt(Math.pow((mx - this.x), 2) + Math.pow((my - this.y), 2));
         return distance <= this.radius;
     };
+    Circle.prototype.getCollisionBox = function () {
+        return {
+            x: this.x - this.radius,
+            y: this.y - this.radius,
+            w: this.radius * 2,
+            h: this.radius * 2
+        };
+    };
     return Circle;
 }(Shape));
 export { Circle };

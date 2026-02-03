@@ -32,6 +32,14 @@ var Rectangle = (function (_super) {
             my >= this.y &&
             my <= this.y + this.height);
     };
+    Rectangle.prototype.getCollisionBox = function () {
+        return {
+            x: this.x,
+            y: this.y,
+            w: this.width,
+            h: this.height
+        };
+    };
     return Rectangle;
 }(Shape));
 export { Rectangle };

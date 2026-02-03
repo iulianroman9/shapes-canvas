@@ -28,4 +28,13 @@ export class Triangle extends Shape {
             my <= this.y + this.side
         );
     }
+
+    getCollisionBox() {
+        return { 
+            x: this.x - this.side / 2, 
+            y: this.y, 
+            w: this.side, 
+            h: this.side 
+        };
+    }
 }

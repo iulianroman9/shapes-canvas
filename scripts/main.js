@@ -8,6 +8,7 @@ var clearButton = document.getElementById('clear-button');
 var collisionToggle = document.getElementById('collision-toggle');
 var shapeColors = ['#ff0000', '#0000ff', '#00ff00', '#8c00ff'];
 var shapes = [];
+var startDragX, startDragY;
 var isDragging = false;
 var draggedShape;
 canvas.addEventListener('mousedown', function (e) {
@@ -18,6 +19,8 @@ canvas.addEventListener('mousedown', function (e) {
         if (shapes[i].isPointInside(mx, my)) {
             isDragging = true;
             draggedShape = shapes[i];
+            startDragX = draggedShape.x;
+            startDragY = draggedShape.y;
             shapes.splice(i, 1);
             shapes.push(draggedShape);
             drawEverything();
@@ -36,6 +39,18 @@ canvas.addEventListener('mousemove', function (e) {
     drawEverything();
 });
 window.addEventListener('mouseup', function () {
+    if (isDragging && draggedShape && collisionToggle.checked) {
+        for (var _i = 0, shapes_1 = shapes; _i < shapes_1.length; _i++) {
+            var other = shapes_1[_i];
+            if (other === draggedShape)
+                continue;
+            if (checkCollision(draggedShape, other)) {
+                draggedShape.x = startDragX;
+                draggedShape.y = startDragY;
+                break;
+            }
+        }
+    }
     isDragging = false;
     draggedShape = null;
     drawEverything();
@@ -104,4 +119,12 @@ function createShape(type) {
     shapes.push(newShape);
     drawEverything();
 }
-drawInfo();
+function checkCollision(shapeA, shapeB) {
+    var a = shapeA.getCollisionBox();
+    var b = shapeB.getCollisionBox();
+    return (a.x < b.x + b.w &&
+        a.x + a.w > b.x &&
+        a.y < b.y + b.h &&
+        a.y + a.h > b.y);
+}
+drawEverything();

@@ -13,6 +13,7 @@ const shapeColors = ['#ff0000','#0000ff','#00ff00','#8c00ff']
 
 let shapes: Shape[] = [];
 
+let startDragX: number, startDragY: number;
 let isDragging = false;
 let draggedShape: Shape | null;
 
@@ -26,6 +27,9 @@ canvas.addEventListener('mousedown', (e) => {
             isDragging = true;
             draggedShape = shapes[i];
             
+            startDragX = draggedShape.x;
+            startDragY = draggedShape.y;
+
             shapes.splice(i, 1);
             shapes.push(draggedShape);
             
@@ -48,6 +52,19 @@ canvas.addEventListener('mousemove', (e) => {
 });
 
 window.addEventListener('mouseup', () => {
+    if (isDragging && draggedShape && collisionToggle.checked) {
+        for (const other of shapes) {
+            if (other === draggedShape)
+                continue;
+
+            if (checkCollision(draggedShape, other)) {
+                draggedShape.x = startDragX;
+                draggedShape.y = startDragY;
+                break; 
+            }
+        }
+    }
+
     isDragging = false;
     draggedShape = null;
     drawEverything();
@@ -128,6 +145,18 @@ function createShape(type: ShapeType) {
 
     shapes.push(newShape);
     drawEverything();
+}
+
+function checkCollision(shapeA: Shape, shapeB: Shape): boolean {
+    const a = shapeA.getCollisionBox();
+    const b = shapeB.getCollisionBox();
+
+    return (
+        a.x < b.x + b.w &&
+        a.x + a.w > b.x &&
+        a.y < b.y + b.h &&
+        a.y + a.h > b.y
+    );
 }
 
 drawEverything();

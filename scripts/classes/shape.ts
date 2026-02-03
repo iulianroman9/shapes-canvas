@@ -14,4 +14,5 @@ export abstract class Shape {
 
     abstract draw(ctx: CanvasRenderingContext2D): void;
     abstract isPointInside(mx: number, my: number): boolean;
+    abstract getCollisionBox(): {x: number, y: number, w: number, h: number};
 }
