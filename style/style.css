@@ -1,0 +1,44 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color:rgba(0, 0, 0, 0.90);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    border: 1px solid #fff;
+    border-radius: 0.5rem;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.canvas-container {
+    border: 1px solid #555;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+label {
+    color: #fff;
+}
+
+canvas {
+    display: block;
+}
