@@ -23,4 +23,13 @@ export class Rectangle extends Shape {
             my <= this.y + this.height
         );
     }
+
+    getCollisionBox() {
+        return {
+            x: this.x,
+            y: this.y,
+            w: this.width,
+            h: this.height
+        }
+    }
 }

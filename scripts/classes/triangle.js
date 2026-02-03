@@ -37,6 +37,14 @@ var Triangle = (function (_super) {
             my >= this.y &&
             my <= this.y + this.side);
     };
+    Triangle.prototype.getCollisionBox = function () {
+        return {
+            x: this.x - this.side / 2,
+            y: this.y,
+            w: this.side,
+            h: this.side
+        };
+    };
     return Triangle;
 }(Shape));
 export { Triangle };
