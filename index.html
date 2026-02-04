@@ -9,13 +9,13 @@
 <body>
     <main>
         <h1>draw.io*</h1>
-        <div class="button-container">
+        <div class="button-container" aria-label="shapes">
             <button type="button" data-shape="circle">circle</button>
             <button type="button" data-shape="triangle">triangle</button>
             <button type="button" data-shape="square">square</button>
             <button type="button" data-shape="rectangle">rectangle</button>
         </div>
-        <div class="option-container">
+        <div class="option-container" aria-lable="options">
             <button type="button" id="clear-button">Clear canvas</button>
             <label for="collision-toggle">Collision toggle:</label>
             <input type="checkbox" id="collision-toggle">
@@ -23,7 +23,7 @@
         <div class="canvas-container">
             <canvas id="my-canvas" height="500" width="800"></canvas>
         </div>
-        <h3>*not really</h3>
+        <h2>*not really</h2>
     </main>
     <script type="module" src="./scripts/main.js"></script>
 </body>
