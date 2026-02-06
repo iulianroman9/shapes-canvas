@@ -9,7 +9,7 @@ const canvas = document.getElementById('my-canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d')!;
 const clearButton = document.getElementById('clear-button') as HTMLButtonElement;
 const collisionToggle = document.getElementById('collision-toggle') as HTMLInputElement;
-const shapeColors = ['#ff0000','#0000ff','#00ff00','#8c00ff']
+const colorPicker = document.getElementById('color-picker') as HTMLInputElement;
 
 let shapes: Shape[] = [];
 
@@ -118,16 +118,16 @@ document.querySelectorAll('.button-container button').forEach(btn => {
     btn.addEventListener('click', (e) => {
         const type = (e.target as HTMLElement).getAttribute('data-shape') as ShapeType;
         if (type) {
-            createShape(type);
+            const color = colorPicker.value;
+            createShape(type, color);
         }
     });
 });
 
-function createShape(type: ShapeType) {
+function createShape(type: ShapeType, color: string) {
     const x = Math.random() * (canvas.width - 100) + 50;
     const y = Math.random() * (canvas.height - 100) + 25;
-    const color = shapeColors[Math.floor(Math.random() * shapeColors.length)];
-
+    
     let newShape: Shape;
 
     if (type === 'circle') {
